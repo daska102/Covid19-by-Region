@@ -108,7 +108,7 @@ eastStateDF <- createRegionalDF(eastStates, "2020-03-15")
 
 #plot of US Map with all current cases + new cases in last 24 hours
 ggplot() + 
-  geom_polygon( data=states48
+  geom_polygon( data=states
           , aes(x=long, y=lat, group=group), color="#01d9e1", fill= wes_palette("BottleRocket2")[5] ) +  
   theme_map() +
   ggtitle("U.S. Cases of Covid 19") +
