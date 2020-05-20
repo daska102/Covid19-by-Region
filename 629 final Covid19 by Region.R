@@ -39,14 +39,6 @@ jhuWithCounts <- johnHopkinsConfirmedCases %>%
 jhuNoDupes <- jhuWithCounts[!duplicated(jhuWithCounts[c("Lat","Long_")], fromLast = T), ]
 
 
-#unused for visualizations or infographic, but I used this to check that my calcultions were accurate
-byStateCounts <- jhuWithCounts %>%
-  group_by(Province_State, dates) %>%
-  mutate(stateCases = sum(case_count), dailyCaseCountSum = sum(case_sum))
-byStateCounts <- byStateCounts[!duplicated(byStateCounts[c("Province_State", "dates")], fromLast = T), ]
-byStateCounts <-  byStateCounts[order(-byStateCounts$stateCases),] 
-
-
 #gathering data per region: west, central, and east
 westStates <- c("Washington", "Oregon", "California", "Idaho", "Nevada", "Arizona", "Montana", "Utah", "New Mexico",
                     "Colorado", "Wyoming")
@@ -67,11 +59,6 @@ getRegionPopulation <- function(regionArray) {
   return(pop)
 }
 
-
-#getting populations for infographic
-wpop <- getRegionPopulation(westStates)
-epop <- getRegionPopulation(eastStates)
-cpop <- getRegionPopulation(centralStates)
 
 
 #creates a new dataframe for each region
@@ -106,6 +93,27 @@ centralStateDF <- createRegionalDF(centralStates, "2020-03-15")
 eastStateDF <- createRegionalDF(eastStates, "2020-03-15")
 
 
+#MARK: additional information for infographic
+
+#getting populations for infographic and for 
+wpop <- getRegionPopulation(westStates)
+epop <- getRegionPopulation(eastStates)
+cpop <- getRegionPopulation(centralStates)
+
+
+# number new cases
+westStateDF$newCaseCount[nrow(westStateDF)]
+eastStateDF$newCaseCount[nrow(westStateDF)]
+centralStateDF$newCaseCount[nrow(westStateDF)]
+
+#total case count
+westStateDF$regionalCases[nrow(westStateDF)]
+eastStateDF$regionalCases[nrow(westStateDF)]
+centralStateDF$regionalCases[nrow(westStateDF)]
+
+
+#MARK: Graphs
+
 #plot of US Map with all current cases + new cases in last 24 hours
 ggplot() + 
   geom_polygon( data=states
@@ -128,10 +136,10 @@ ggplot() +
 ggplot() +
   theme_set(theme_minimal()) +
   theme(  axis.text=element_text(size=10, face="bold"), axis.title=element_text(size=10, face="bold"), plot.title =element_text(size=13, face="bold"))+
-  geom_bar(data = eastStateDF, stat="identity", aes(x = DATES, y = newCaseCount), fill = "#e6dba3")+
-  geom_bar(data = centralStateDF, stat="identity", aes(x = DATES, y = newCaseCount), fill = "#a0bd98") +
-  geom_bar(data = westStateDF, stat="identity", aes(x = DATES, y = newCaseCount), fill = "#dfbfd3") +
-  ggtitle("New Covid Cases per Day")+
+  geom_bar(data = eastStateDF, stat="identity", aes(x = DATES, y = newCaseCount * 100000 / epop), fill = "#e6dba3")+
+  geom_bar(data = centralStateDF, stat="identity", aes(x = DATES, y = newCaseCount * 100000 / cpop), fill = "#a0bd98") +
+  geom_bar(data = westStateDF, stat="identity", aes(x = DATES, y = newCaseCount * 100000 / wpop), fill = "#dfbfd3") +
+  ggtitle("New Daily Cases Per 100,000 Population")+
   xlab("") + ylab("New Cases")
 
 
@@ -142,6 +150,6 @@ ggplot() +
   geom_line(data = centralStateDF, aes(x = DATES, y =  per100000), color= "#a0bd98", size = 3.5)  + 
   geom_line(data = westStateDF, aes(x = DATES, y = per100000), color= "#dfbfd3", size = 3.5)  +
   geom_line(data = eastStateDF, aes(x = DATES, y = per100000), color= "#e6dba3", size = 3.5) +
-  ggtitle("Total Case Count Per 100,000 Population Size") +
+  ggtitle("Total Case Count Per 100,000 Population") +
   xlab("") + ylab("Total Case Count")
 
