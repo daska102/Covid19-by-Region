@@ -1,8 +1,8 @@
-# Covid19-by-Region
+# README
 
-629 Data Visualization Final Project 
+629 Data Viz Final Project - Covid-19 in the U.S. by Region
 
-How Covid19 is impacting the United States divided into 3 main regions.
+This repository contains R source code as well as a dataset from census.gov to reproduce graphs that are presented in my infographic (also in the repository).
 
 All current and new cases on the infographic are as of May 10th. Running the R script will provide the newest up to date information as the dataset is updated daily.
 
