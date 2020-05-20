@@ -6,6 +6,8 @@ How Covid19 is impacting the United States divided into 3 main regions.
 
 All current and new cases on the infographic are as of May 10th. Running the R script will provide the newest up to date information as the dataset is updated daily.
 
+To view infographic, open "Covid 19 By Region Infographic - May 10.png"
+
 Population data gathered from census.gov 2019 data. 
 
 Covid-19 data gathered from John Hopkins Covid-19 time series dataset updated daily.
