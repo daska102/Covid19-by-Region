@@ -15,8 +15,8 @@ install.packages(c("readr", "ggplot2", "sf", "maps", "ggthemes", "tidyverse", "w
 In R studio, run the code line by line. This will gather all of the data, generate information presented on the infographic, and at the end of the file, will produce all three graphs.
 
 ### Infographic
-The infographic displays information showing how the U.S. is affected by Covid-19, divided into 3 regions.
-To view infographic, open "Covid 19 By Region Infographic - May 10.png"
+The infographic I created displays information showing how the U.S. is affected by Covid-19, divided into 3 regions.
+![Image of Infographic](https://github.com/daska102/Data_Visualization_Covid19/blob/master/Covid%2019%20By%20Region%20Infographic%20-%20May%2010.png)
 
 ### Data
 Population data gathered from census.gov 2019 data. 
