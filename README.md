@@ -16,6 +16,7 @@ In R studio, run the code line by line. This will gather all of the data, genera
 
 ### Infographic
 The infographic I created displays information showing how the U.S. is affected by Covid-19, divided into 3 regions.
+
 ![Image of Infographic](https://github.com/daska102/Data_Visualization_Covid19/blob/master/Covid%2019%20By%20Region%20Infographic%20-%20May%2010.png)
 
 ### Data
